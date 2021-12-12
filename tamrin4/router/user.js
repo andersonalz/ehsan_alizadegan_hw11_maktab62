@@ -8,10 +8,12 @@ const users = require (path.join(__dirname , './users.json'))
 //        res.send(users)
 // })
 
-user.post('/getUser',  (req, res) => {
-       const finduser = users.find((user) => { user.username === req.bady.username })
-       if (finduser === undefined) {
-             res.send('not found') 
+user.post('/getUser', (req, res) => {
+       const finduser = users.find((user) => {
+              return user.username === req.body.username
+       })
+       if (!finduser) {
+              res.send('not found')
        } else {
               res.send(finduser)
        }
